@@ -1,7 +1,7 @@
 import { readFileSync, existsSync } from "node:fs";
 import { mkdir } from "node:fs/promises";
 import type { ImageContent } from "@mariozechner/pi-ai";
-import type { AgentSession } from "@mariozechner/pi-coding-agent";
+import type { AgentSession, DefaultResourceLoader } from "@mariozechner/pi-coding-agent";
 import type { DiscordContext } from "./discord.js";
 import { imageMimeType } from "./agent-models.js";
 import type { RunState } from "./agent-types.js";
@@ -82,8 +82,9 @@ export async function runAgentTurn(params: {
   agent: any;
   session: AgentSession;
   runState: RunState;
+  resourceLoader?: DefaultResourceLoader;
 }): Promise<{ stopReason: string; errorMessage?: string }> {
-  const { ctx, conversationDir, scratchDir, sessionManager, agent, session, runState } = params;
+  const { ctx, conversationDir, scratchDir, sessionManager, agent, session, runState, resourceLoader } = params;
   await mkdir(scratchDir, { recursive: true });
   await mkdir(conversationDir, { recursive: true });
 
@@ -109,6 +110,15 @@ export async function runAgentTurn(params: {
 
   let prompt = `[${ctx.message.userName}]: ${ctx.message.text}`;
   if (otherAttachments.length > 0) prompt += `\n\n<discord_attachments>\n${otherAttachments.join("\n")}\n</discord_attachments>`;
+
+  // Reload resources (extensions, skills, prompts, themes) from installed packages
+  if (resourceLoader) {
+    try {
+      await resourceLoader.reload();
+    } catch (err) {
+      log.warn("resource reload failed", err instanceof Error ? err.message : String(err));
+    }
+  }
 
   await ctx.setTyping(true);
   await ctx.setWorking(true);

@@ -5,15 +5,14 @@ import {
   AuthStorage,
   convertToLlm,
   createCodingTools,
-  createExtensionRuntime,
+  DefaultResourceLoader,
   ModelRegistry,
-  type ResourceLoader,
   SessionManager,
 } from "@mariozechner/pi-coding-agent";
 import { join } from "node:path";
 import { createDiscordSettingsManager } from "./context.js";
 import { resolveInitialModel, formatModel } from "./agent-models.js";
-import { buildAppendSystemPrompt, getMemory, loadDiscordSkills } from "./agent-prompt.js";
+import { buildAppendSystemPrompt, getMemory } from "./agent-prompt.js";
 import { createDiscordCustomTools } from "./agent-tools.js";
 import { createSessionOps } from "./agent-session-ops.js";
 import { runAgentTurn, wireSessionUpdates } from "./agent-runner.js";
@@ -43,20 +42,17 @@ function createRunner(workspaceDir: string, conversationKey: string): AgentRunne
   const sessionManager = SessionManager.open(contextFile, conversationDir);
   const settingsManager = createDiscordSettingsManager(workspaceDir);
 
-  const skills = loadDiscordSkills(conversationDir);
   let appendSystemPrompt = buildAppendSystemPrompt(workspaceDir, conversationKey, getMemory(conversationDir));
 
-  const resourceLoader: ResourceLoader = {
-    getExtensions: () => ({ extensions: [], errors: [], runtime: createExtensionRuntime() }),
-    getSkills: () => ({ skills, diagnostics: [] }),
-    getPrompts: () => ({ prompts: [], diagnostics: [] }),
-    getThemes: () => ({ themes: [], diagnostics: [] }),
-    getAgentsFiles: () => ({ agentsFiles: [] }),
-    getSystemPrompt: () => undefined,
-    getAppendSystemPrompt: () => [appendSystemPrompt],
-    extendResources: () => {},
-    reload: async () => {},
-  };
+  const resourceLoader = new DefaultResourceLoader({
+    cwd: scratchDir,
+    settingsManager,
+    additionalSkillPaths: [
+      join(workspaceDir, "skills"),
+      join(conversationDir, "skills"),
+    ],
+    appendSystemPrompt,
+  });
 
   const runState: RunState = {
     ctx: null,
@@ -106,7 +102,7 @@ function createRunner(workspaceDir: string, conversationKey: string): AgentRunne
   return {
     async run(ctx) {
       appendSystemPrompt = buildAppendSystemPrompt(workspaceDir, conversationKey, getMemory(conversationDir));
-      return runAgentTurn({ ctx, conversationDir, scratchDir, sessionManager, agent, session, runState });
+      return runAgentTurn({ ctx, conversationDir, scratchDir, sessionManager, agent, session, runState, resourceLoader });
     },
     abort(): void {
       void session.abort();

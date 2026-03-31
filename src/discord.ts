@@ -144,12 +144,19 @@ export class DiscordBot {
 
     const commands = buildSlashCommands();
     const guildId = policy.slashCommands?.guildId;
-    if (guildId) {
-      await this.client.application.commands.set(commands, guildId);
-      log.info(`registered slash commands in guild ${guildId}`);
-    } else {
-      await this.client.application.commands.set(commands);
-      log.info("registered global slash commands");
+    try {
+      if (guildId) {
+        await this.client.application.commands.set(commands, guildId);
+        log.info(`registered slash commands in guild ${guildId}`);
+      } else {
+        await this.client.application.commands.set(commands);
+        log.info("registered global slash commands");
+      }
+    } catch (err) {
+      log.warn(
+        "slash command registration failed (bot will continue without slash commands)",
+        err instanceof Error ? err.message : String(err),
+      );
     }
   }
 

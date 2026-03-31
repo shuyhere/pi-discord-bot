@@ -1,6 +1,5 @@
 import { existsSync, readFileSync } from "node:fs";
 import { join } from "node:path";
-import { loadSkillsFromDir, type Skill } from "@mariozechner/pi-coding-agent";
 
 export function getMemory(conversationDir: string): string {
   const parts: string[] = [];
@@ -10,16 +9,6 @@ export function getMemory(conversationDir: string): string {
     if (text) parts.push(text);
   }
   return parts.join("\n\n") || "(no memory yet)";
-}
-
-export function loadDiscordSkills(conversationDir: string): Skill[] {
-  const map = new Map<string, Skill>();
-  for (const dir of [join(conversationDir, "..", "skills"), join(conversationDir, "skills")]) {
-    for (const skill of loadSkillsFromDir({ dir, source: dir.includes("/skills") ? "workspace" : "channel" }).skills) {
-      map.set(skill.name, skill);
-    }
-  }
-  return [...map.values()];
 }
 
 export function buildAppendSystemPrompt(workspaceDir: string, conversationKey: string, memory: string): string {

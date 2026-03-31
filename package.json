@@ -52,11 +52,13 @@
     "prepublishOnly": "npm run build && npm test"
   },
   "dependencies": {
-    "@mariozechner/pi-agent-core": "^0.64.0",
-    "@mariozechner/pi-ai": "^0.64.0",
-    "@mariozechner/pi-coding-agent": "^0.64.0",
-    "@sinclair/typebox": "^0.34.41",
     "discord.js": "^14.19.3"
+  },
+  "peerDependencies": {
+    "@mariozechner/pi-agent-core": "*",
+    "@mariozechner/pi-ai": "*",
+    "@mariozechner/pi-coding-agent": "*",
+    "@sinclair/typebox": "*"
   },
   "devDependencies": {
     "@types/node": "^24.3.0",
