@@ -1,0 +1,41 @@
+{
+  "skill_name": "pi-discord-bot",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "I just cloned this pi-discord-bot repo. Can you walk me through getting it running locally from scratch, including the env file and the external workspace folder?",
+      "expected_output": "Explains local install, env setup, external workspace setup, and local start commands.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "How do I configure the Discord bot permissions and intents for this repo? I want the exact minimum setup so /pi and mentions work.",
+      "expected_output": "Explains Discord bot creation, Message Content Intent, scopes, and required permissions from the repo README.",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "Please help me create the workspace discord-policy.json for one server and one channel only. I want DMs allowed too.",
+      "expected_output": "Guides creation of the external workspace discord-policy.json and explains allowDMs, guildIds, channelIds, mentionMode, and slashCommands.guildId.",
+      "files": []
+    },
+    {
+      "id": 4,
+      "prompt": "I want this bot to run in the background on my laptop after login. Please use the included systemd user service and show me the exact steps.",
+      "expected_output": "Explains setup of pi-discord-bot.service and ~/.config/pi-discord-bot.env, then enable/start/status commands.",
+      "files": []
+    },
+    {
+      "id": 5,
+      "prompt": "The bot starts but does not answer in Discord. Can you help me debug the setup without redesigning the project?",
+      "expected_output": "Uses the repo's simple setup flow to inspect env, policy, logs, intents, and verification steps without proposing a complex redeploy.",
+      "files": []
+    },
+    {
+      "id": 6,
+      "prompt": "Can you explain how this repo is supposed to work operationally? I mainly want to understand the main message vs replies behavior and where state is stored.",
+      "expected_output": "Explains the conversation-key behavior, append-only logs, and external workspace layout.",
+      "files": []
+    }
+  ]
+}

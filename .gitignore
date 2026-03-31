@@ -1,0 +1,14 @@
+node_modules/
+dist/
+*.tgz
+
+# Runtime + local state
+agent/
+*.log
+
+# Local env / editor
+.env
+.env.*
+!.env.example
+.vscode/
+.DS_Store

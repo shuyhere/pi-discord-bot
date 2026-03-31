@@ -1,0 +1,16 @@
+[Unit]
+Description=Pi Discord Bot
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+WorkingDirectory=%h/pi-discord-bot
+EnvironmentFile=%h/.config/pi-discord-bot.env
+ExecStart=/usr/bin/env npx tsx src/main.ts
+Restart=always
+RestartSec=5
+TimeoutStopSec=20
+
+[Install]
+WantedBy=default.target

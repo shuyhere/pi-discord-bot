@@ -1,0 +1,53 @@
+{
+  "name": "pi-discord-bot",
+  "version": "0.1.0",
+  "private": true,
+  "description": "A small Discord harness built around Pi primitives.",
+  "license": "MIT",
+  "type": "module",
+  "keywords": [
+    "pi",
+    "discord",
+    "bot",
+    "agent",
+    "discord.js"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shuyhere/pi-discord-bot.git"
+  },
+  "homepage": "https://github.com/shuyhere/pi-discord-bot#readme",
+  "bugs": {
+    "url": "https://github.com/shuyhere/pi-discord-bot/issues"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE",
+    "docs"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "dev": "tsx watch src/main.ts",
+    "build": "tsc -p tsconfig.json",
+    "start": "node dist/main.js",
+    "test": "node --import tsx --test src/**/*.test.ts"
+  },
+  "dependencies": {
+    "@mariozechner/pi-agent-core": "^0.64.0",
+    "@mariozechner/pi-ai": "^0.64.0",
+    "@mariozechner/pi-coding-agent": "^0.64.0",
+    "@sinclair/typebox": "^0.34.41",
+    "discord.js": "^14.19.3"
+  },
+  "devDependencies": {
+    "@types/node": "^24.3.0",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.3"
+  }
+}

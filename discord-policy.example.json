@@ -1,0 +1,10 @@
+{
+  "allowDMs": true,
+  "guildIds": ["123456789012345678"],
+  "channelIds": ["234567890123456789"],
+  "mentionMode": "mention-only",
+  "slashCommands": {
+    "enabled": true,
+    "guildId": "123456789012345678"
+  }
+}
