@@ -15,7 +15,7 @@ It keeps Pi as the agent core and adds a Discord transport layer with:
 2. Install this package:
 
 ```bash
-pi install npm:pi-discord-bot
+pi install npm:@shuyhere/pi-discord-bot
 ```
 
 3. Start Pi and ask it to guide setup:
@@ -131,7 +131,7 @@ Unsupported in Discord:
 2. **Install this package** — run in your terminal:
 
 ```bash
-pi install npm:pi-discord-bot
+pi install npm:@shuyhere/pi-discord-bot
 ```
 
 3. **Start Pi and ask your agent** — just run `pi` and ask it to help you set up the Discord bot:

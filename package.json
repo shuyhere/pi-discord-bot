@@ -1,5 +1,5 @@
 {
-  "name": "pi-discord-bot",
+  "name": "@shuyhere/pi-discord-bot",
   "version": "0.0.1",
   "description": "A small Discord harness built around Pi primitives.",
   "license": "MIT",

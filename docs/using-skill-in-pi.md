@@ -12,7 +12,7 @@ The goal is:
 Once the package is published, install it into Pi with:
 
 ```bash
-pi install npm:pi-discord-bot
+pi install npm:@shuyhere/pi-discord-bot
 ```
 
 Then start Pi:
@@ -103,7 +103,7 @@ If you want the cleanest user flow, do this:
 
 ### npm package flow
 ```bash
-pi install npm:pi-discord-bot
+pi install npm:@shuyhere/pi-discord-bot
 pi
 ```
 

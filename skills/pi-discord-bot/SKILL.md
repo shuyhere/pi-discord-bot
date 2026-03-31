@@ -57,7 +57,7 @@ When the user asks how to use this with Pi, prefer these flows.
 This is the preferred low-setup path when the package is published.
 
 ```bash
-pi install npm:pi-discord-bot
+pi install npm:@shuyhere/pi-discord-bot
 pi
 ```
 
@@ -116,7 +116,7 @@ Prefer this sequence unless the user asks for something narrower.
 ### 1. Start from skill usage
 
 First explain the simplest way to use the skill:
-- `pi install npm:pi-discord-bot`
+- `pi install npm:@shuyhere/pi-discord-bot`
 - or `pi install /path/to/pi-discord-bot`
 - then `/skill:pi-discord-bot`
 
@@ -229,7 +229,7 @@ If verification fails, inspect config and logs before proposing deeper changes.
 ## Good outcomes
 
 A successful help session usually ends with the user having:
-- installed the skill with `pi install npm:pi-discord-bot` or `pi install /path/to/pi-discord-bot`
+- installed the skill with `pi install npm:@shuyhere/pi-discord-bot` or `pi install /path/to/pi-discord-bot`
 - used `/skill:pi-discord-bot`
 - created `~/.config/pi-discord-bot.env`
 - created an external workspace and `<workspace>/discord-policy.json`
