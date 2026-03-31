@@ -85,22 +85,26 @@ Unsupported in Discord:
 
 ### Use as a Pi package skill
 
-From npm:
+1. **Install Pi** — follow the [Pi quick start guide](https://github.com/badlogic/pi-mono/tree/main/packages/coding-agent#quick-start) and configure your provider auth (e.g. `pi login`).
+
+2. **Install this package** — run in your terminal:
 
 ```bash
 pi install npm:pi-discord-bot
 ```
 
-From a local source checkout:
+3. **Start Pi and ask your agent** — just run `pi` and ask it to help you set up the Discord bot:
+
+```text
+/skill:pi-discord-bot help me set up the bot
+```
+
+The Pi agent will walk you through creating your Discord app, configuring the token, setting up the policy file, and starting the bot. You don't need to memorize any setup steps — just ask.
+
+Alternatively, from a local source checkout:
 
 ```bash
 pi install /absolute/path/to/pi-discord-bot
-```
-
-Then start Pi and use:
-
-```text
-/skill:pi-discord-bot
 ```
 
 See also:
