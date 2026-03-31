@@ -35,17 +35,15 @@ npm test
 npx tsc --noEmit
 ```
 
-### 3. Review package metadata placeholders
-Open `package.json` and replace:
-- `REPLACE_ME` in `repository.url`
-- `REPLACE_ME` in `homepage`
-- `REPLACE_ME` in `bugs.url`
+### 3. Review package metadata
+Open `package.json` and confirm:
+- `repository.url`
+- `homepage`
+- `bugs.url`
+- `bin`
+- `pi.skills`
 
-If you do **not** want npm publishing yet, keep:
-
-```json
-"private": true
-```
+If you intend to publish to npm, also confirm the package name and version are correct.
 
 ### 4. Confirm docs are publish-ready
 Check these files:
@@ -166,20 +164,12 @@ Make sure users can easily find:
 
 ## Part 4: Recommended first public release posture
 
-For the **first public release**, I recommend:
-- publish as a GitHub repo only
-- keep `package.json` as:
+For the public release, I recommend:
+- publish the GitHub repo
+- publish the npm package
+- support both Pi package install and source checkout workflows
 
-```json
-"private": true
-```
-
-That means:
-- people can clone and run it
-- you avoid accidental npm publish
-- you keep package boundaries flexible while the project stabilizes
-
-This is the safest first release mode.
+That gives users a simple low-friction install path while still keeping the source repo available.
 
 ---
 
@@ -202,16 +192,14 @@ Suggested notes:
 - Discord-native model/settings/tree/approval cards
 - systemd-friendly local operation
 - Pi shared auth/settings flow
-- runtime workspace stored in `./agent`
+- runtime workspace stored outside the repo by default
 
 ---
 
-## Part 6: Safe npm publish flow later
-
-Do this **later**, not as part of the first GitHub publish.
+## Part 6: Safe npm publish flow
 
 When ready:
-1. replace package metadata placeholders
+1. confirm package metadata and version
 2. run:
 
 ```bash
@@ -219,13 +207,11 @@ npm pack --dry-run
 ```
 
 3. inspect included files carefully
-4. remove or change:
+4. publish:
 
-```json
-"private": true
+```bash
+npm publish --access public
 ```
-
-5. then publish
 
 ---
 
@@ -244,6 +230,8 @@ git commit -m "Initial release"
 git branch -M main
 git remote add origin git@github.com:<YOUR_USER>/pi-discord-bot.git
 git push -u origin main
+npm pack --dry-run
+npm publish --access public
 ```
 
 Before `git commit`, verify again that workspace data is **not** included.

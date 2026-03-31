@@ -3,8 +3,8 @@
   "evals": [
     {
       "id": 1,
-      "prompt": "I just cloned this pi-discord-bot repo. Can you walk me through getting it running locally from scratch, including the env file and the external workspace folder?",
-      "expected_output": "Explains local install, env setup, external workspace setup, and local start commands.",
+      "prompt": "I want the easiest way to use this from Pi. Should I install it from npm or from source, and how do I invoke the skill?",
+      "expected_output": "Prefers `pi install npm:pi-discord-bot` or `pi install /path/to/pi-discord-bot`, then explains using `/skill:pi-discord-bot` in Pi.",
       "files": []
     },
     {
@@ -35,6 +35,12 @@
       "id": 6,
       "prompt": "Can you explain how this repo is supposed to work operationally? I mainly want to understand the main message vs replies behavior and where state is stored.",
       "expected_output": "Explains the conversation-key behavior, append-only logs, and external workspace layout.",
+      "files": []
+    },
+    {
+      "id": 7,
+      "prompt": "I don't want a long manual guide. I want Pi to guide me through setup using the repo skill.",
+      "expected_output": "Explains the Pi-package workflow first, shows `/skill:pi-discord-bot`, and only then goes into env/policy/systemd details as needed.",
       "files": []
     }
   ]

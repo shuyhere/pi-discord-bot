@@ -83,6 +83,31 @@ Unsupported in Discord:
 
 ## Install
 
+### Use as a Pi package skill
+
+From npm:
+
+```bash
+pi install npm:pi-discord-bot
+```
+
+From a local source checkout:
+
+```bash
+pi install /absolute/path/to/pi-discord-bot
+```
+
+Then start Pi and use:
+
+```text
+/skill:pi-discord-bot
+```
+
+See also:
+- `docs/using-skill-in-pi.md`
+
+### Develop or run from source
+
 ```bash
 npm install
 ```
@@ -225,13 +250,16 @@ agent/
 For operator-focused configuration, especially if you already use Pi CLI / TUI on the same machine, see:
 
 - `docs/operator-env-config.md`
+- `docs/using-skill-in-pi.md`
 - `docs/publishing-checklist.md`
 - `docs/github-release-flow.md`
 
-That guide explains:
+Those guides explain:
+- how to install the package into Pi from npm or source
+- how to use `/skill:pi-discord-bot`
 - `~/.config/pi-discord-bot.env`
 - Pi shared auth/settings expectations
-- `./agent/discord-policy.json`
+- workspace `discord-policy.json`
 - systemd usage
 - troubleshooting for operators
 
